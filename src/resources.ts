@@ -7,24 +7,25 @@ export function createSchemaFromResource(resourceName: string): SchemaDefinition
   const capitalized = toPascalCase(singular);
 
   const baseProperties: Record<string, SchemaDefinition> = {
-    id: COMMON_FIELDS.id,
-    createdAt: COMMON_FIELDS.createdAt,
-    updatedAt: COMMON_FIELDS.updatedAt,
+    id: COMMON_FIELDS.id!,
+    createdAt: COMMON_FIELDS.createdAt!,
+    updatedAt: COMMON_FIELDS.updatedAt!,
+    status: COMMON_FIELDS.status!,
   };
 
   if (resourceName.toLowerCase().includes("user")) {
-    baseProperties.name = COMMON_FIELDS.name;
-    baseProperties.email = COMMON_FIELDS.email;
+    baseProperties.name = COMMON_FIELDS.name!;
+    baseProperties.email = COMMON_FIELDS.email!;
   }
 
   if (resourceName.toLowerCase().includes("product")) {
-    baseProperties.name = COMMON_FIELDS.name;
-    baseProperties.price = COMMON_FIELDS.price;
-    baseProperties.quantity = COMMON_FIELDS.quantity;
+    baseProperties.name = COMMON_FIELDS.name!;
+    baseProperties.price = COMMON_FIELDS.price!;
+    baseProperties.quantity = COMMON_FIELDS.quantity!;
   }
 
   if (resourceName.toLowerCase().includes("order")) {
-    baseProperties.status = COMMON_FIELDS.status;
+    baseProperties.status = COMMON_FIELDS.status!;
     baseProperties.total = { type: "number", format: "double", description: "Order total" };
   }
 
@@ -58,7 +59,9 @@ export function inferResources(input: string): string[] {
   const found = candidates.filter((candidate) => normalized.includes(candidate));
   const customMatches = Array.from(
     normalized.matchAll(/(?:with|including|for|and)\s+([a-zA-Z][a-zA-Z0-9_\- ]{2,}?)(?:\s*(?:,|$|and))/g),
-  ).map((match) => match[1].trim());
+  )
+    .map((data) => data[1]?.trim())
+    .filter((resource): resource is string => resource !== undefined);
 
   const customResources = customMatches
     .map((raw) => raw.replace(/\b(the|an|a|and|with|including|for)\b/gi, "").trim())
