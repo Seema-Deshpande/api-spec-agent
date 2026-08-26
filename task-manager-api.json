@@ -1,0 +1,703 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Build a task management API with API",
+    "version": "1.0.0",
+    "description": "Auto-generated OpenAPI 3.0 specification for: \"Build a task management API with users, projects, and tasks. Users can have many projects. Projects can have many tasks with status, due date.\""
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "Users management endpoints"
+    },
+    {
+      "name": "status",
+      "description": "Status management endpoints"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "summary": "users collection",
+      "description": "Operations for users.",
+      "get": {
+        "summary": "List users",
+        "description": "Returns a list of users.",
+        "operationId": "users_list",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create user",
+        "description": "Creates a new user.",
+        "operationId": "user_create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Replace user",
+        "description": "Replaces an existing user record.",
+        "operationId": "user_replace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user",
+        "description": "Partially updates an existing user.",
+        "operationId": "user_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Patched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user",
+        "description": "Deletes a user.",
+        "operationId": "user_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          }
+        }
+      },
+      "head": {
+        "summary": "Head user",
+        "description": "Returns headers for user.",
+        "operationId": "user_head",
+        "responses": {
+          "200": {
+            "description": "Headers returned successfully"
+          }
+        }
+      },
+      "options": {
+        "summary": "Options for user",
+        "description": "Returns allowed methods for user.",
+        "operationId": "user_options",
+        "responses": {
+          "204": {
+            "description": "Allowed methods returned"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "summary": "user detail",
+      "description": "Operations for a specific user.",
+      "get": {
+        "summary": "Get user by id",
+        "description": "Returns one user.",
+        "operationId": "user_get_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Replace user by id",
+        "description": "Replaces one user.",
+        "operationId": "user_replace_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user by id",
+        "description": "Updates one user.",
+        "operationId": "user_update_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Patched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user by id",
+        "description": "Deletes one user.",
+        "operationId": "user_delete_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          }
+        }
+      }
+    },
+    "/status": {
+      "summary": "status collection",
+      "description": "Operations for status.",
+      "get": {
+        "summary": "List status",
+        "description": "Returns a list of status.",
+        "operationId": "status_list",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Statu"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create statu",
+        "description": "Creates a new statu.",
+        "operationId": "statu_create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Statu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Replace statu",
+        "description": "Replaces an existing statu record.",
+        "operationId": "statu_replace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Statu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update statu",
+        "description": "Partially updates an existing statu.",
+        "operationId": "statu_update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Patched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete statu",
+        "description": "Deletes a statu.",
+        "operationId": "statu_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          }
+        }
+      },
+      "head": {
+        "summary": "Head statu",
+        "description": "Returns headers for statu.",
+        "operationId": "statu_head",
+        "responses": {
+          "200": {
+            "description": "Headers returned successfully"
+          }
+        }
+      },
+      "options": {
+        "summary": "Options for statu",
+        "description": "Returns allowed methods for statu.",
+        "operationId": "statu_options",
+        "responses": {
+          "204": {
+            "description": "Allowed methods returned"
+          }
+        }
+      }
+    },
+    "/status/{id}": {
+      "summary": "statu detail",
+      "description": "Operations for a specific statu.",
+      "get": {
+        "summary": "Get statu by id",
+        "description": "Returns one statu.",
+        "operationId": "statu_get_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "statu not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Replace statu by id",
+        "description": "Replaces one statu.",
+        "operationId": "statu_replace_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Statu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update statu by id",
+        "description": "Updates one statu.",
+        "operationId": "statu_update_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Patched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete statu by id",
+        "description": "Deletes one statu.",
+        "operationId": "statu_delete_by_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email address"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "description": "User resource"
+      },
+      "Statu": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "description": "Statu resource"
+      }
+    }
+  }
+}
